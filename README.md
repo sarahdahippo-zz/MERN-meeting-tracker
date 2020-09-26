@@ -20,3 +20,13 @@ A simple web-based application that allows users to create, edit, and delete mee
   - CSS3
   - JavaScript
   - Bootstrap
+
+### Running the server
+To launch the project in your browser, change directory into the source folder
+```
+cd MERN-meeting-tracker/src
+```
+and run the following command:
+```
+npm start
+```
