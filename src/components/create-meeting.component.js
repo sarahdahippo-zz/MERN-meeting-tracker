@@ -73,7 +73,7 @@ export default class CreateMeeting extends Component {
 
     console.log(meeting);
 
-    axios.post('http://localhost:5000/workouts/add', meeting)
+    axios.post('http://localhost:5000/meetings/add', meeting)
       .then(res => console.log(res.data));
 
     window.location = '/';
