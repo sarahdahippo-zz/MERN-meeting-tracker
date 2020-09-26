@@ -20,3 +20,22 @@ A simple web-based application that allows users to create, edit, and delete mee
   - CSS3
   - JavaScript
   - Bootstrap
+
+### Running the server
+To launch the development server in your web browser, change directory into the source folder:
+```
+cd MERN-meeting-tracker/src
+```
+and run the following command:
+```
+npm start
+```
+In a new terminal (without closing the previous one), change directory into the backend folder:
+```
+cd MERN-meeting-tracker/backend
+```
+and run the following command:
+```
+nodemon server
+```
+to establish the MongoDB database connection.
