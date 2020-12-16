@@ -22,20 +22,13 @@ A simple web-based application that allows users to create, edit, and delete mee
   - Bootstrap
 
 ### Running the server
-To launch the development server in your web browser, change directory into the source folder:
+1. `git clone` the repository and change directory into the `src` folder:
 ```
 cd MERN-meeting-tracker/src
 ```
-and run the following command:
-```
-npm start
-```
-In a new terminal (without closing the previous one), change directory into the backend folder:
+2. Install the modules `npm install` and run `npm start` to launch the development server in your web browser. It will be hosted at http://localhost:3000/.
+4. In a new terminal (without closing the previous one), change directory into the `backend` folder:
 ```
 cd MERN-meeting-tracker/backend
 ```
-and run the following command:
-```
-nodemon server
-```
-to establish the MongoDB database connection.
+5. Install the modules `npm install` and run `nodemon server` to establish the MongoDB database connection.
