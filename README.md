@@ -31,4 +31,4 @@ cd MERN-meeting-tracker/src
 ```
 cd MERN-meeting-tracker/backend
 ```
-5. Install the modules `npm install` and run `nodemon server` to establish the MongoDB database connection.
+5. Install the modules `npm install` and run `nodemon server` to establish the MongoDB database connection. If you do not have `nodemon`, install it globally `npm install -g nodemon`.
