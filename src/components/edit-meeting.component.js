@@ -11,6 +11,7 @@ export default class EditMeeting extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeNotes = this.onChangeNotes.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -18,6 +19,7 @@ export default class EditMeeting extends Component {
       description: '',
       duration: 0,
       date: new Date(),
+      notes: '',
       users: []
     }
   }
@@ -29,7 +31,8 @@ export default class EditMeeting extends Component {
           username: response.data.username,
           description: response.data.description,
           duration: response.data.duration,
-          date: new Date(response.data.date)
+          date: new Date(response.data.date),
+          notes: response.data.notes
         })   
       })
       .catch(function (error) {
@@ -71,6 +74,12 @@ export default class EditMeeting extends Component {
   onChangeDate(date) {
     this.setState({
       date: date
+    })
+  }
+
+  onChangeNotes(e) {
+    this.setState({
+      notes: e.target.value
     })
   }
 
@@ -140,6 +149,15 @@ export default class EditMeeting extends Component {
               onChange={this.onChangeDate}
             />
           </div>
+        </div>
+        <div className="form-group">
+          <label>Meeting Minutes: </label>
+          <textarea 
+              type="text" 
+              className="form-control"
+              value={this.state.notes}
+              onChange={this.onChangeNotes}
+              />
         </div>
 
         <div className="form-group">
