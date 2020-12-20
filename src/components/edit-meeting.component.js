@@ -32,7 +32,7 @@ export default class EditMeeting extends Component {
           description: response.data.description,
           duration: response.data.duration,
           date: new Date(response.data.date),
-          notes: response.data.notes
+          notes: response.data.notes ? response.data.notes : ''
         })   
       })
       .catch(function (error) {
@@ -90,7 +90,8 @@ export default class EditMeeting extends Component {
       username: this.state.username,
       description: this.state.description,
       duration: this.state.duration,
-      date: this.state.date
+      date: this.state.date,
+      notes: this.state.notes
     }
 
     console.log(meeting);
