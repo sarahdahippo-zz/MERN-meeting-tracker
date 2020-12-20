@@ -6,7 +6,14 @@ import '../App.css';
 const Meeting = props => (
   <tr>
     <td>{props.meeting.username}</td>
-    <td>{props.meeting.description}</td>
+    <td>
+      {props.meeting.description}
+      <div className="meeting-notes">{props.meeting.notes}</div>
+      {/*<button type="button" className="collapsible">Meeting Minutes</button>
+      <div className="collapse-content">
+        <p>{props.meeting.notes}</p>
+      </div>*/}
+    </td>
     <td>{props.meeting.duration}</td>
     <td>{props.meeting.date.substring(0,10)}</td>
     <td>
@@ -20,7 +27,9 @@ export default class MeetingsList extends Component {
   constructor(props) {
     super(props);
     this.deleteMeeting = this.deleteMeeting.bind(this);
-    this.state = {meetings: []};
+    this.state = {
+      meetings: []
+    };
   }
 
   componentDidMount() {
@@ -49,6 +58,18 @@ export default class MeetingsList extends Component {
   }
 
   render() {
+    var collapse = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapse.length; i++) {
+        collapse[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
     return (
       <div>
         <h3>Logged Meetings</h3>
