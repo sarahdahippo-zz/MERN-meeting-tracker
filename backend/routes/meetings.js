@@ -11,13 +11,15 @@ router.route('/add').post((req, res) => {
 	const username = req.body.username;
 	const description = req.body.description;
 	const duration = Number(req.body.duration);
-	const date = Date.parse(req.body.date);
+  const date = Date.parse(req.body.date);
+  const notes = req.body.notes ? req.body.notes : '';
 
 	const newMeeting = new Meeting({
 		username,
 		description,
 		duration,
-		date,
+    date,
+    notes,
 	});
 	newMeeting.save()
 		.then(() => res.json('Meeting added!'))
@@ -43,6 +45,7 @@ router.route('/update/:id').post((req, res) => {
       meeting.description = req.body.description;
       meeting.duration = Number(req.body.duration);
       meeting.date = Date.parse(req.body.date);
+      meeting.notes = req.body.notes ? req.body.notes : '';
 
       meeting.save()
         .then(() => res.json('Meeting updated!'))
