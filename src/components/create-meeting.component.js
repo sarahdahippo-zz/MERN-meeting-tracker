@@ -11,6 +11,7 @@ export default class CreateMeeting extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeNotes = this.onChangeNotes.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -18,6 +19,7 @@ export default class CreateMeeting extends Component {
       description: '',
       duration: 0,
       date: new Date(),
+      notes: '',
       users: []
     }
   }
@@ -61,6 +63,12 @@ export default class CreateMeeting extends Component {
     })
   }
 
+  onChangeNotes(e) {
+    this.setState({
+      notes: e.target.value
+    })
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -68,7 +76,8 @@ export default class CreateMeeting extends Component {
       username: this.state.username,
       description: this.state.description,
       duration: this.state.duration,
-      date: this.state.date
+      date: this.state.date,
+      notes: this.state.notes
     }
 
     console.log(meeting);
@@ -127,6 +136,15 @@ export default class CreateMeeting extends Component {
               onChange={this.onChangeDate}
             />
           </div>
+        </div>
+        <div className="form-group">
+          <label>Meeting Minutes: </label>
+          <textarea 
+              type="text" 
+              className="form-control"
+              value={this.state.notes}
+              onChange={this.onChangeNotes}
+              />
         </div>
 
         <div className="form-group">
