@@ -35,13 +35,13 @@ export default class MeetingsList extends Component {
     if (this.state.activeIndex === index) {
       return (
         <span>
-          <i className='fas fa-angle-up'></i>Hide Meeting Minutes
+          <i className='fas fa-angle-up'></i> Hide Meeting Minutes
         </span>
       );
     } else {
       return (
         <span>
-          <i className='fas fa-angle-down'></i>Show Meeting Minutes
+          <i className='fas fa-angle-down'></i> Show Meeting Minutes
         </span>
       );                      
     }
@@ -58,14 +58,6 @@ export default class MeetingsList extends Component {
 
   meetingList() {
     return this.state.meetings.map((currMeeting, index) => {
-      // return <Meeting meeting={currMeeting}
-      //                 deleteMeeting={this.deleteMeeting}
-      //                 key={currMeeting._id}
-      //                 activeIndex={this.state.activeIndex}
-      //                 moreLess={this.moreLess}
-      //                 index={index}
-      //                 toggleClass={this.toggleClass}
-      //         />;
       return(
         <tr>
           <td>{currMeeting.username}</td>
