@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Collapse } from 'react-collapse';
 import axios from 'axios'; // Axios library to send HTTP request to backed
 import '../App.css';
-
-const Meeting = props => (
-  <tr>
-    <td>{props.meeting.username}</td>
-    <td>
-      {props.meeting.description}
-      <div className="meeting-notes">{props.meeting.notes}</div>
-      {/*<button type="button" className="collapsible">Meeting Minutes</button>
-      <div className="collapse-content">
-        <p>{props.meeting.notes}</p>
-      </div>*/}
-    </td>
-    <td>{props.meeting.duration}</td>
-    <td>{props.meeting.date.substring(0,10)}</td>
-    <td>
-      <Link to={"/edit/"+props.meeting._id}>edit</Link> | <button className='link-button text-primary'
-					onClick={() => { props.deleteMeeting(props.meeting._id) }}>delete</button>
-    </td>
-  </tr>
-)
 
 export default class MeetingsList extends Component {
   constructor(props) {
     super(props);
     this.deleteMeeting = this.deleteMeeting.bind(this);
+    this.toggleClass = this.toggleClass.bind(this);
     this.state = {
-      meetings: []
+      meetings: [],
+      activeIndex: null
     };
   }
 
@@ -42,6 +25,28 @@ export default class MeetingsList extends Component {
       })
   }
 
+  toggleClass(index, e) {     
+    this.setState({
+      activeIndex: this.state.activeIndex === index ? null : index
+    });
+  };
+  
+  moreLess(index) {
+    if (this.state.activeIndex === index) {
+      return (
+        <span>
+          <i className='fas fa-angle-up'></i>Hide Meeting Minutes
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          <i className='fas fa-angle-down'></i>Show Meeting Minutes
+        </span>
+      );                      
+    }
+}
+
   deleteMeeting(id) {
     axios.delete('http://localhost:5000/meetings/'+id)
       .then(response => { console.log(response.data)});
@@ -52,24 +57,44 @@ export default class MeetingsList extends Component {
   }
 
   meetingList() {
-    return this.state.meetings.map(currMeeting => {
-      return <Meeting meeting={currMeeting} deleteMeeting={this.deleteMeeting} key={currMeeting._id}/>;
+    return this.state.meetings.map((currMeeting, index) => {
+      // return <Meeting meeting={currMeeting}
+      //                 deleteMeeting={this.deleteMeeting}
+      //                 key={currMeeting._id}
+      //                 activeIndex={this.state.activeIndex}
+      //                 moreLess={this.moreLess}
+      //                 index={index}
+      //                 toggleClass={this.toggleClass}
+      //         />;
+      return(
+        <tr>
+          <td>{currMeeting.username}</td>
+          <td>
+            {currMeeting.description}
+            <Collapse isOpened={this.state.activeIndex === index}>
+              <div className={`alert alert-info msg
+                              ${this.state.activeIndex === index ? 'show' : 'hide'}
+                    `}
+              >
+                {currMeeting.notes}
+              </div>
+            </Collapse>
+            <button onClick={this.toggleClass.bind(this, index)}>
+              {this.moreLess(index)}
+            </button>
+          </td>
+          <td>{currMeeting.duration}</td>
+          <td>{currMeeting.date.substring(0,10)}</td>
+          <td>
+            <Link to={"/edit/" + currMeeting._id}>edit</Link> | <button className='link-button text-primary'
+                onClick={() => {this.deleteMeeting(currMeeting._id)}}>delete</button>
+          </td>
+        </tr>
+      )
     })
   }
 
   render() {
-    // var collapse = document.getElementsByClassName("collapsible");
-    // for (let i = 0; i < collapse.length; i++) {
-    //     collapse[i].addEventListener("click", function() {
-    //     this.classList.toggle("active");
-    //     var content = this.nextElementSibling;
-    //     if (content.style.display === "block") {
-    //       content.style.display = "none";
-    //     } else {
-    //       content.style.display = "block";
-    //     }
-    //   });
-    // }
     return (
       <div>
         <h3>Logged Meetings</h3>
