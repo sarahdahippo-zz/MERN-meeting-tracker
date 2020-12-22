@@ -59,7 +59,7 @@ export default class MeetingsList extends Component {
   meetingList() {
     return this.state.meetings.map((currMeeting, index) => {
       return(
-        <tr>
+        <tr key={index}>
           <td>{currMeeting.username}</td>
           <td className="description">
             {currMeeting.description}<br/><br/>
@@ -88,10 +88,10 @@ export default class MeetingsList extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Logged Meetings</h3>
-        <table className="table">
-          <thead className="thead-light">
+      <div className="main">
+        <h2>All Meetings</h2>
+        <table className="table table-bordered">
+          <thead className="thead-dark">
             <tr>
               <th>Username</th>
               <th>Description</th>
