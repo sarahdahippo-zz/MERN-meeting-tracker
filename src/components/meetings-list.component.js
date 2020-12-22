@@ -61,7 +61,7 @@ export default class MeetingsList extends Component {
       return(
         <tr>
           <td>{currMeeting.username}</td>
-          <td>
+          <td className="description">
             {currMeeting.description}
             <Collapse isOpened={this.state.activeIndex === index}>
               <div className={`alert alert-info msg
