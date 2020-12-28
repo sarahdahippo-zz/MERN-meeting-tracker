@@ -1,8 +1,9 @@
 # Meeting Tracker
 A simple web-based application that allows users to create, edit, and delete meetings, and display all users' meeting logs.
 
-### Demo
-(A work in progress)
+### Screenshots
+![Meetings List](/public/meetings.png)
+![New Meeting](/public/newMeeting.png)
 
 ### What could it be useful for?
 - Professors wanting a public platform for his/her class to schedule and view meetings with him/her or others
